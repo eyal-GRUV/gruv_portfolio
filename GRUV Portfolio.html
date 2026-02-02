@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio Video</title>
+
+  <style>
+
+body.hasIntro .topIntro{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+body.hasIntro #work{
+  display: none;
+}
+
+
+    :root{
+      --bg:#0b0c10;
+      --text:#e8e8ea;
+      --muted:#a7a8b1;
+      --accent:#e10600; /* rojo */
+      --border:rgba(255,255,255,.08);
+      --radius:18px;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{ max-width:1200px; margin:0 auto; padding:28px 18px 80px; }
+
+    /* ---------- TOP BAR ---------- */
+    .nav{
+      display:flex; justify-content:space-between; align-items:center; gap:14px;
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,12,16,.92), rgba(11,12,16,.65));
+      border-bottom:1px solid var(--border);
+      padding:14px 18px; margin: -28px -18px 22px;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; }
+    .dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 24px rgba(225,6,0,.7); }
+    .navlinks{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .pill{
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:14px;
+      transition:.2s ease;
+      background: rgba(255,255,255,.02);
+    }
+    .pill:hover{ color:var(--text); border-color:rgba(255,255,255,.18); transform: translateY(-1px); }
+
+    /* ---------- HERO ---------- */
+
+body.hasIntro .nav{
+  display: none;
+}
+
+body.hasIntro .wrap{
+  padding: 0;
+}
+
+body.hasIntro .topIntro{
+  margin: 0;
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+body.hasIntro #work{
+  display:none;
+}
+
+.topIntro{
+  padding: 24px 0 10px;
+  margin: 10px 0 22px;
+}
+
+.topTitle{
+  margin: 0;
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: -1px;
+  font-size: 64px;
+  line-height: 1.05;
+}
+
+.topSections{
+  margin-top: 12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: 16px;
+  flex-wrap: wrap;
+  text-align:center;
+}
+
+.topTab{
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 800;
+  letter-spacing: .45px;
+  font-size: 12px;
+  color: rgba(255,255,255,.78);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.topTab:hover{
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.topTab.active{
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+
+.topItem{
+  font-weight: 800;
+  letter-spacing: .45px;
+  font-size: 12px;
+  color: rgba(255,255,255,.78);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.topDot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: .95;
+}
+
+@media (max-width: 700px){
+  .topTitle{ font-size: 40px; }
+  .topSections{ gap: 10px; }
+}
+
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+      align-items:stretch;
+      margin-bottom:18px;
+    }
+    @media (max-width: 900px){ .hero{ grid-template-columns:1fr; } }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .heroMain{ padding:22px; }
+    h1{ margin:0 0 10px; font-size:42px; line-height:1.05; letter-spacing:-.6px; }
+    .sub{ color:var(--muted); font-size:16px; line-height:1.6; margin:0; }
+
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      font-weight:700;
+      font-size:14px;
+      transition:.2s ease;
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      color: var(--text);
+    }
+    .btn.primary{
+      background: rgba(225,6,0,.18);
+      border-color: rgba(225,6,0,.35);
+      color:#fff; /* texto blanco */
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
+
+    .heroSide{ padding:18px; display:flex; flex-direction:column; gap:12px; }
+    .sideBox{ padding:14px; border:1px solid var(--border); border-radius:16px; background: rgba(0,0,0,.18); }
+    .sideTitle{ font-weight:800; margin:0 0 6px; }
+    .sideText{ margin:0; color:var(--muted); font-size:14px; line-height:1.55; }
+    .tagRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .tag{ font-size:12px; padding:7px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted); }
+
+    /* ---------- TABS ---------- */
+    .tabsRow{ display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 18px; }
+    .tabBtn{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .tabBtn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); color:var(--text); }
+    .tabBtn.active{
+      color:#fff;
+      border-color:rgba(225,6,0,.45);
+      background:rgba(225,6,0,.2);
+    }
+
+    /* ---------- GRID ---------- */
+    .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:16px; }
+    .tile{
+      position:relative;
+      overflow:hidden;
+      border-radius:var(--radius);
+      background:#000;
+      cursor:pointer;
+      border:1px solid var(--border);
+    }
+    .thumb{
+      position:relative;
+      width:100%;
+      background-size:cover;
+      background-position:center;
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+
+    /* vertical 9:16 */
+    .tile.vert{ grid-column:span 3; }
+    .tile.vert .thumb{ aspect-ratio:9/16; }
+    @media(max-width:900px){ .tile.vert{ grid-column:span 6; } }
+    @media(max-width:600px){ .tile.vert{ grid-column:span 12; } }
+
+    /* horizontal full width */
+    .tile.horz{ grid-column:span 12; }
+    .tile.horz .thumb{ aspect-ratio:16/9; }
+
+    /* play */
+    .play{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.25);
+      display:grid;
+      place-items:center;
+      z-index:2;
+      backdrop-filter: blur(6px);
+    }
+    .play svg{ width:18px; height:18px; fill:#fff; margin-left:2px; }
+    .thumb.playing .play{ display:none; }
+
+    /* youtube cover */
+    .ytCover{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      border-radius:var(--radius);
+      background:#000;
+    }
+    .ytCover iframe{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:100%;
+      height:100%;
+      transform:translate(-50%,-50%);
+      border:0;
+      display:block;
+      background:#000;
+    }
+
+    /* role bar (motion/vfx/videoclips horizontal with role) */
+    .tile.horz.hasRole .roleBar{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:12px 16px;
+      background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0));
+      color:#fff;
+      font-size:14px;
+      line-height:1.4;
+      z-index:3;
+      pointer-events:none;
+    }
+
+    /* ---------- Short form vertical divider ---------- */
+    .shortDivider{
+      grid-column: 1 / -1;
+      position: relative;
+      min-height: 1px;
+      margin: 0px 0 0px;
+    }
+
+    /* texto vertical */
+    .shortDividerLabel{
+      position: absolute;
+      left: -64px;
+      top: 20;
+      bottom: 20;
+      display: flex;
+      align-items: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-weight: 800;
+      font-size: 50px;
+      letter-spacing: .4px;
+      color: #fff;
+      white-space: nowrap;
+      text-transform: uppercase;
+      padding-top: 24px; 
+    }
+
+    .shortDividerLabel::after{
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 8px; /* separación del texto */
+  display: block;
+}
+
+    @media (max-width: 600px){
+      .shortDivider::before{
+        left: 0;
+        top: -6px;
+        bottom: auto;
+        width: 100%;
+        height: 2px;
+      }
+      .shortDividerLabel{
+        position: static;
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin-bottom: 6px;
+        display: block;
+      }
+    }
+.sfIndex{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin: 6px 0 22px;
+  padding: 18px 16px 20px;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 0; /* sin borde redondeado */
+}
+
+.sfIndexTitle{
+  margin:0;
+  text-align:center;
+  font-weight:800;
+  font-size:24px;
+  letter-spacing:.3px;
+  color:#fff;
+}
+
+.sfIndexList{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  width:100%;
+}
+
+.sfIndexBtn{
+  background:none;
+  border:none;
+  padding:0;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.45px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.75);
+  cursor:pointer;
+  transition:.2s ease;
+  white-space:nowrap;
+}
+
+.sfIndexBtn:hover{
+  color:#fff;
+  transform: translateY(-1px);
+}
+
+.sfIndexSeparator{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  opacity:.9;
+  flex-shrink:0;
+}
+
+
+.sfIndexBtn:active{
+  transform: translateY(0);
+}
+
+.sfIndexBtn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.18);
+  color: var(--text);
+}
+
+.sfIndex{
+  position: sticky;
+  top: 50px;
+  z-index: 9;
+  backdrop-filter: blur(10px);
+  background: rgba(11,12,16,.78);
+}
+
+
+
+    /* ---------- CONTACT ---------- */
+    #contact{ scroll-margin-top: 90px; }
+    .contactCard{ padding:18px; }
+    .contactGrid{
+      display:grid;
+      gap:10px;
+      grid-template-columns:1fr 1fr;
+    }
+    .contactGrid input, .contactGrid textarea{
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:14px;
+      outline:none;
+      width:100%;
+    }
+    .contactGrid textarea{
+      min-height: 110px;
+      resize: vertical;
+      grid-column:1 / -1;
+    }
+    .contactGrid input:nth-child(3),
+    .contactGrid input:nth-child(4){
+      grid-column:1 / -1;
+    }
+    .contactGrid .full{ grid-column:1 / -1; }
+    .contactHint{ margin:10px 0 0; color:var(--muted); font-size:13px; }
+
+    footer{
+      margin-top:28px;
+      color:var(--muted);
+      font-size:13px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+    }
+
+.aboutWrap{
+  grid-column: 1 / -1;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.02);
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.aboutTitle{
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.aboutLead{
+  margin: 0 0 16px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.aboutGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+@media (max-width: 900px){
+  .aboutGrid{ grid-template-columns: 1fr; }
+}
+
+.aboutCard{
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.aboutCard h3{
+  margin: 0 0 8px;
+  font-size: 14px;
+  letter-spacing: .25px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.9);
+}
+
+.aboutCard ul{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.aboutCard p{
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+/* ===================== INTRO (FULLSCREEN YOUTUBE BG) ===================== */
+
+/* cuando estás en intro */
+body.hasIntro .nav{ display:none; }
+body.hasIntro #work{ display:none; }
+
+/* rompe el contenedor centrado (.wrap) SOLO en intro */
+body.hasIntro .wrap{
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* header intro full-bleed */
+body.hasIntro .topIntro{
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* fondo youtube */
+.introYt{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;              /* <-- NO -1 */
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .25;
+}
+
+/* iframe siempre cubre */
+.introYt iframe{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 100vw;
+  height: 100vh;
+
+  min-width: 177.78vh;     /* 16:9 */
+  min-height: 56.25vw;
+
+  transform: translate(-50%, -50%);
+  border: 0;
+  display: block;
+}
+
+/* overlay suave opcional (para que el texto siempre se lea) */
+body.hasIntro .topIntro::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.35), rgba(0,0,0,.65));
+}
+
+/* texto arriba del video */
+body.hasIntro .topTitle,
+body.hasIntro .topSections{
+  position: relative;
+  z-index: 2;
+}
+
+/* Quick tabs en barra superior */
+.quickTabs{
+  display:none;
+  gap:14px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+body.showQuickTabs .quickTabs{
+  display:flex;
+}
+
+.quickTab{
+  background:none;
+  border:none;
+  padding:0;
+  font-weight:800;
+  letter-spacing:.45px;
+  font-size:12px;
+  color:rgba(255,255,255,.78);
+  text-transform:uppercase;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.quickTab:hover{ color:#fff; transform:translateY(-1px); }
+
+.quickTab.active{
+  color:#fff;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+/* que no tape el contenido */
+.nav{ z-index: 20; }
+
+/* Cuando aparecen las quick tabs: la barra pasa a 3 columnas */
+body.showQuickTabs .nav{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* izquierda | centro | derecha */
+  align-items: center;
+}
+
+/* Ubicar cada bloque */
+body.showQuickTabs .brand{
+  justify-self: start;
+}
+
+body.showQuickTabs .quickTabs{
+  justify-self: center;
+}
+
+body.showQuickTabs .navlinks{
+  justify-self: end;
+}
+
+.quickTabs{
+  display:none;
+  gap:14px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+body.showQuickTabs .quickTabs{ display:flex; }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- Top bar -->
+    <div class="nav">
+      <div class="brand"><span id="brandName">GRUV</span><span class="dot"></span></div>
+      <div class="navlinks">
+      <div class="quickTabs" id="quickTabs" aria-label="Accesos rápidos"></div>
+
+      </div>
+    </div>
+
+    <!-- Intro -->
+<header class="topIntro" id="top">
+  <div class="introYt">
+    <iframe
+      id="introYtFrame"
+      src="https://www.youtube-nocookie.com/embed/7ONXpKGeJBY?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=7ONXpKGeJBY"
+      title="Intro background"
+      frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </div>
+
+  <h1 class="topTitle">GRUV PORTFOLIO</h1>
+
+  <div class="topSections" id="topTabs" aria-label="Secciones">
+    <button class="topTab" type="button" data-tab="social_edit">SHORT FORM</button>
+    <span class="topDot"></span>
+    <button class="topTab" type="button" data-tab="motion">MOTION GRAPHICS</button>
+    <span class="topDot"></span>
+    <button class="topTab" type="button" data-tab="vfx">VFX</button>
+    <span class="topDot"></span>
+    <button class="topTab" type="button" data-tab="videoclips">VIDEOCLIPS</button>
+    <span class="topDot"></span>
+    <button class="topTab" type="button" data-tab="about">ABOUT US</button>
+  </div>
+</header>
+
+    <!-- Work -->
+<section id="work">
+  <div class="sfIndex" id="sfIndex" style="display:none;">
+    <p class="sfIndexTitle">¿What type  short form content are you looking for?</p>
+    <div class="sfIndexList"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</section>
+
+    <footer>© <span id="year"></span> <span id="brandNameFooter">GRUV</span></footer>
+  </div>
+
+  <script>
+    /* --------------------------- 01) INDEX SHORT FORM --------------------------- */
+const shortFormIndex = [
+  { key: "talking", label: "TALKING HEADS" },
+  { key: "product", label: "PRODUCT SHOWCASE" },
+  { key: "story",   label: "STORYTELLING" },
+  { key: "event",   label: "EVENT" },
+];
+
+    /* ------------------------------- 02) TABS -------------------------------- */
+    const tabs = [
+      { id:"social_edit", label:"Short form", count:35 },
+      { id:"motion", label:"Motion graphics", count:16 },
+      { id:"vfx", label:"VFX", count:5 },
+      { id:"videoclips", label:"Videoclips", count:8 },
+      { id:"about", label:"About Us", count:0 },
+    ];
+
+    /* ------------------------ 03) SHORT FORM STRUCTURE ------------------------ */
+    // Secciones: 12V+1H, 8V+1H, 4V, 4V
+    const shortFormSections = [
+      { title: "Talking head / Interviews", v: 12, h: 1 },
+      { title: "Product showcase",         v:  8, h: 1 },
+      { title: "Storytelling",             v:  4, h: 0 },
+      { title: "Event",                    v:  4, h: 1 },
+    ];
+
+    function getShortFormLayout(index){
+      let cursor = 0;
+      for (const s of shortFormSections) {
+        const size = s.v + s.h;
+        const end = cursor + size;
+        if (index >= cursor && index < end) {
+          const local = index - cursor;
+          if (s.h === 1 && local === s.v) return "horz";
+          return "vert";
+        }
+        cursor = end;
+      }
+      return "vert";
+    }
+
+    /* --------------------------- 04) VIDEOS (LINKS) ---------------------------- */
+const videosByTab = {
+      social_edit: [
+
+        { divider: true, label: "TALKING HEAD - INTERVIEW - PODCASTS" },
+
+        { youtube: "https://youtube.com/shorts/ZVk-toZls7c" },
+        { youtube: "https://youtube.com/shorts/hM-e_JGUraI" },
+        { youtube: "https://youtube.com/shorts/NYPVk7flID4" },
+        { youtube: "https://youtube.com/shorts/dX9zuZr0oi8" },
+
+        { youtube: "https://youtube.com/shorts/S5vnmB0C0ZQ" },
+        { youtube: "https://youtube.com/shorts/WJhxeHlU7zM" },
+        { youtube: "https://youtube.com/shorts/Eoy9tRoYKU8" },
+        { youtube: "https://youtube.com/shorts/8HysxCuFprU" },
+
+        { youtube: "https://youtube.com/shorts/MUb75eqV2fc" },
+        { youtube: "https://youtube.com/shorts/57vIOB58Q8s" },
+        { youtube: "https://youtube.com/shorts/APh86AaJVmg" },
+        { youtube: "https://www.youtube.com/shorts/phXRdJ2VuOE" },
+
+        { youtube: "https://www.youtube.com/watch?v=WSSyurD7XMA" },
+
+        { divider: true, label: "PRODUCT SHOWCASE" },
+
+        { youtube: "https://youtube.com/shorts/KKyBlr_I6Ig" },
+        { youtube: "https://youtube.com/shorts/4mBbHDUWiUk" },
+        { youtube: "https://youtube.com/shorts/oLdXPiJNTdI" },
+        { youtube: "https://youtube.com/shorts/uvqj-7q92ME" },
+
+        { youtube: "https://youtube.com/shorts/08uvDJcY9QE" },
+        { youtube: "https://youtube.com/shorts/_qDp0XZcAR4" },
+        { youtube: "https://youtube.com/shorts/-CULlWpxvCM" },
+        { youtube: "https://youtube.com/shorts/DM4ATTxOSPk" },
+
+        { youtube: "https://www.youtube.com/watch?v=7ONXpKGeJBY" },
+
+        { divider: true, label: "STORYTELLING" },
+
+        { youtube: "https://youtube.com/shorts/NJSfpi8ZlY8" },
+        { youtube: "https://youtube.com/shorts/ypjZTXxNYtY" },
+        { youtube: "https://youtube.com/shorts/foVFukrF77U?" },
+        { youtube: "https://youtube.com/shorts/LQiBClGL3O8" },
+
+        { divider: true, label: "EVENT" },
+
+        { youtube: "https://youtube.com/shorts/hIrKeZl17rI?feature=share" },
+        { youtube: "https://youtube.com/shorts/fwXctPgd6tY" },
+        { youtube: "https://youtube.com/shorts/wVtKwfciKTM" },
+        { youtube: "https://youtube.com/shorts/uIhWDb6e0-E" },
+
+        { youtube: "https://www.youtube.com/watch?v=XA9uzScrhWY" },
+
+      ],
+
+      motion: [
+        { youtube: "https://www.youtube.com/watch?v=Vd6dbzqx5T8", role: "Typography animation and motion graphics" },
+
+        { youtube: "https://youtube.com/shorts/z_VTnXEuQug" },
+        { youtube: "https://youtube.com/shorts/z3Nu0pv7kaY" },
+        { youtube: "https://youtube.com/shorts/SoX02zMLj2c" },
+        { youtube: "https://youtube.com/shorts/1cqXkxQsIUY?feature=share" },
+
+        { youtube: "https://www.youtube.com/watch?v=p-KileNty5w", role: "Typography animation and motion graphics" },
+
+        { youtube: "https://youtube.com/shorts/bK1p5TCma7M?feature=share" },
+        { youtube: "https://youtube.com/shorts/ZTU6ILEVlpc?feature=share" },
+        { youtube: "https://youtube.com/shorts/CGnE07KYyUQ?feature=share" },
+        { youtube: "https://youtube.com/shorts/24d0-T4_bBk?feature=share" },
+
+        { youtube: "https://www.youtube.com/watch?v=d2JHtBoSxBg", role: "Typography animation and motion graphics" },
+
+        { youtube: "https://youtube.com/shorts/lr-jl1lcb2I?feature=share" },
+        { youtube: "https://youtube.com/shorts/xM-pn44K53E?feature=share" },
+        { youtube: "https://youtube.com/shorts/Tj9PdjKBwxk?feature=share" },
+        { youtube: "https://youtube.com/shorts/ErHjWb-1osg?feature=share" },
+
+        { youtube: "https://www.youtube.com/watch?v=5kg__k4jTmU", role: "Motion graphics" },
+      ],
+
+      vfx: [
+        { youtube: "https://www.youtube.com/watch?v=GWqZn0gL_x4", role: "VFX composition" },
+        { youtube: "https://www.youtube.com/watch?v=ZLzDCSzpaZw", role: "VFX composition" }, 
+        { youtube: "https://www.youtube.com/watch?v=ORR5axXGGag", role: "VFX composition" }, 
+      ],
+
+      videoclips: [
+        { youtube: "https://www.youtube.com/watch?v=GPAobFvTyHs", role: "Idea, direction, production and video editing" },
+        { youtube: "https://www.youtube.com/watch?v=OzMbRC2qkqM", role: "Idea, direction, production and video editing"  },
+        { youtube: "https://www.youtube.com/watch?v=tUTlsdnbQw4", role: "Idea, direction, production and video editing"  },
+        { youtube: "https://www.youtube.com/watch?v=YJ0iBDHmhjo", role: "Idea, direction, production and video editing"  },
+        { youtube: "https://www.youtube.com/watch?v=CLRF0ePUusQ", role: "Idea, direction, production and video editing"  },
+      ],
+    };
+
+    /* ------------------------------ 05) STATE ------------------------------- */
+    let activeTabId = null;
+    document.body.classList.add("hasIntro");
+    let currentPlaying = null;
+
+    /* ----------------------------- 06) HELPERS ------------------------------ */
+function slugKey(s){
+  const t = (s || "").toUpperCase();
+  if (t.includes("TALKING")) return "talking";
+  if (t.includes("PRODUCT")) return "product";
+  if (t.includes("STORY")) return "story";
+  if (t.includes("EVENT")) return "event";
+  return null;
+}
+
+    function getYouTubeId(input){
+      const s = (input || "").trim();
+      if(!s) return null;
+
+      if(/^[a-zA-Z0-9_-]{11}$/.test(s)) return s;
+
+      let m = s.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+
+      m = s.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+
+      m = s.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+
+      m = s.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/);
+      if(m) return m[1];
+
+      return null;
+    }
+
+    function ytThumbCandidates(id){
+      if(!id) return [];
+      const cb = `cb=${Date.now()}`;
+      return [
+        `https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp?${cb}`,
+        `https://i.ytimg.com/vi/${id}/maxresdefault.jpg?${cb}`,
+        `https://i.ytimg.com/vi_webp/${id}/sddefault.webp?${cb}`,
+        `https://i.ytimg.com/vi/${id}/sddefault.jpg?${cb}`,
+        `https://i.ytimg.com/vi_webp/${id}/hqdefault.webp?${cb}`,
+        `https://i.ytimg.com/vi/${id}/hqdefault.jpg?${cb}`,
+      ];
+    }
+
+    function ytEmbed(id){
+      return `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
+    }
+
+    function getMotionLayout(index){
+      return index % 5 === 0 ? "horz" : "vert";
+    }
+
+    function stopCurrentPlaying(){
+      if(!currentPlaying) return;
+      currentPlaying.thumb.innerHTML = currentPlaying.original;
+      currentPlaying.thumb.classList.remove("playing");
+      currentPlaying = null;
+    }
+
+    /* ------------------------------ 07) UI ------------------------------- */
+const grid = document.getElementById("grid");
+const topTabs = document.getElementById("topTabs");
+const introYtFrame = document.getElementById("introYtFrame");
+
+/* ===================== INTRO VIDEO CONTROL ===================== */
+function ensureIntroVideo(){
+  if (!introYtFrame) return;
+  if (!introYtFrame.dataset.src) {
+    introYtFrame.dataset.src = introYtFrame.getAttribute("src") || "";
+  }
+  if (document.body.classList.contains("hasIntro")) {
+    if (!introYtFrame.getAttribute("src")) {
+      introYtFrame.setAttribute("src", introYtFrame.dataset.src);
+    }
+  } else {
+    introYtFrame.setAttribute("src", "");
+  }
+}
+
+/* ejecutar una vez al cargar */
+ensureIntroVideo();
+
+
+function renderTopTabs(){
+  if (!topTabs) return;
+  topTabs.querySelectorAll(".topTab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.tab === activeTabId);
+  });
+}
+
+    /* ----------------------------- 08) RENDER ------------------------------ */
+function render(){
+  // Intro: sin pestaña activa
+  if (!activeTabId) {
+    const sfIndex = document.getElementById("sfIndex");
+    if (sfIndex) sfIndex.style.display = "none";
+    grid.innerHTML = "";
+    return;
+  }
+
+  const tab = tabs.find(t => t.id === activeTabId);
+  const list = (videosByTab[activeTabId] || []).slice(0, tab.count);
+
+  if (activeTabId === "about") {
+    const sfIndex = document.getElementById("sfIndex");
+    if (sfIndex) sfIndex.style.display = "none";
+
+    grid.innerHTML = `
+      <div class="aboutWrap">
+        <h2 class="aboutTitle">About Us</h2>
+        <p class="aboutLead">
+          Somos un estudio audiovisual enfocado en contenido que performa: short form, motion graphics y postproducción
+          para marcas y proyectos que quieren destacarse con una estética cuidada y un mensaje claro.
+        </p>
+
+        <div class="aboutGrid">
+          <div class="aboutCard">
+            <h3>Servicios</h3>
+            <ul>
+              <li>Edición short form (Reels, TikTok, Shorts): ritmo, hooks, subtítulos y versionado.</li>
+              <li>Motion graphics: animación de texto, packshots, lower thirds, transiciones y piezas completas.</li>
+              <li>VFX / post: limpieza, tracking, rotoscopia, compositing, estabilización, color básico.</li>
+              <li>Videoclips: edición, look & feel, narrativa, entregables para lanzamiento.</li>
+            </ul>
+          </div>
+
+          <div class="aboutCard">
+            <h3>Cómo trabajamos</h3>
+            <ul>
+              <li>Brief rápido para entender objetivo y audiencia.</li>
+              <li>Primer corte con dirección creativa clara.</li>
+              <li>Rondas de feedback ordenadas y entregas en formatos requeridos.</li>
+              <li>Archivo organizado y listo para escalar campañas.</li>
+            </ul>
+          </div>
+
+          <div class="aboutCard">
+            <h3>Experiencia</h3>
+            <p>
+              Trabajamos con marcas y equipos internos para producir contenido consistente y escalable.
+              Nos enfocamos en velocidad + criterio creativo: mantener identidad, elevar calidad y cuidar el detalle.
+            </p>
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const sfIndexEl = document.getElementById("sfIndex");
+  const sfListEl = sfIndexEl ? sfIndexEl.querySelector(".sfIndexList") : null;
+
+  if (activeTabId === "social_edit") {
+    sfIndexEl.style.display = "block";
+
+    if (sfListEl) {
+      sfListEl.innerHTML = shortFormIndex.map((x, i) => {
+        const btn = `<button type="button" class="sfIndexBtn" data-sf="${x.key}">${x.label}</button>`;
+        if (i === shortFormIndex.length - 1) return btn;
+        return btn + `<span class="sfIndexSeparator"></span>`;
+      }).join("");
+    }
+  } else {
+    sfIndexEl.style.display = "none";
+  }
+
+  let html = "";
+  let mediaIndex = 0;
+
+  list.forEach((v, i) => {
+    // Divisor manual (no cuenta para layout)
+    if (activeTabId === "social_edit" && v.divider) {
+      const key = slugKey(v.label);
+      const anchorId = key ? `sf-${key}` : "";
+html += `
+  <div class="shortDivider" ${anchorId ? `id="${anchorId}"` : ""}>
+    <span class="shortDividerLabel">${v.label}<span class="shortDividerDot" aria-hidden="true"></span></span>
+  </div>
+`;
+
+      return;
+    }
+
+    const id = getYouTubeId(v.youtube);
+    const thumbs = ytThumbCandidates(id);
+    const bg = thumbs.length
+      ? `background-image:${thumbs.map(u => `url('${u}')`).join(",")};`
+      : "";
+
+    let layout = "vert";
+    const isMotion = activeTabId === "motion";
+
+    if (isMotion) {
+      layout = getMotionLayout(i);
+    } else if (activeTabId === "social_edit") {
+      layout = getShortFormLayout(mediaIndex);
+    } else if (activeTabId === "videoclips" || activeTabId === "vfx") {
+      layout = "horz";
+    }
+
+    const hasRole = !!v.role;
+
+    html += `
+      <div class="tile ${layout} ${isMotion ? "motion" : ""} ${hasRole ? "hasRole" : ""}" data-index="${i}">
+        <div class="thumb" style="${bg}">
+          <div class="play" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          ${layout === "horz" && v.role ? `<div class="roleBar">${v.role}</div>` : ""}
+        </div>
+      </div>
+    `;
+
+    mediaIndex++;
+  });
+
+  grid.innerHTML = html;
+}
+
+    /* ------------------------- 09) EVENTS / LISTENERS ------------------------- */
+
+    // Tabs del header (texto bajo el título)
+    if (topTabs) {
+      topTabs.addEventListener("click", (e) => {
+        const btn = e.target.closest(".topTab");
+        if (!btn) return;
+
+        activeTabId = btn.dataset.tab;
+        document.body.classList.remove("hasIntro");
+        ensureIntroVideo();
+
+        if (introYtFrame) {
+          introYtFrame.dataset.src = introYtFrame.src;
+          introYtFrame.src = "";
+        }
+
+        stopCurrentPlaying();
+        renderTopTabs();
+        render();
+
+        renderQuickTabs();
+      });
+    }
+
+    // Volver al intro al tocar el título
+    const topTitle = document.querySelector(".topTitle");
+    if (topTitle) {
+      topTitle.addEventListener("click", () => {
+        activeTabId = null;
+        document.body.classList.add("hasIntro");
+        ensureIntroVideo();
+
+
+        if (introYtFrame && !introYtFrame.src) {
+          introYtFrame.src = introYtFrame.dataset.src;
+        }
+
+        stopCurrentPlaying();
+        renderTopTabs();
+        render();
+      });
+    }
+
+    // Click en índice sticky de Short form (con offset)
+    const sfIndexRoot = document.getElementById("sfIndex");
+    if (sfIndexRoot) {
+      sfIndexRoot.addEventListener("click", (e) => {
+        const btn = e.target.closest(".sfIndexBtn");
+        if (!btn) return;
+
+        const target = document.getElementById(`sf-${btn.dataset.sf}`);
+        if (!target) return;
+
+        const navEl = document.querySelector(".nav");
+        const navH = navEl ? navEl.offsetHeight : 0;
+        const indexH = sfIndexRoot ? sfIndexRoot.offsetHeight : 0;
+
+        const extraGap = 12;
+        const offset = navH + indexH + extraGap;
+
+        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      });
+    }
+
+    // Click para reproducir tiles (YouTube embed inline)
+    if (grid) {
+      grid.addEventListener("click", (e) => {
+        const tile = e.target.closest(".tile");
+        if (!tile) return;
+
+        const index = Number(tile.dataset.index);
+        const v = (videosByTab[activeTabId] || [])[index];
+        const id = getYouTubeId(v?.youtube);
+        if (!id) return;
+
+        const thumb = tile.querySelector(".thumb");
+        if (!thumb) return;
+        if (thumb.classList.contains("playing")) return;
+
+        stopCurrentPlaying();
+
+        const original = thumb.innerHTML;
+        thumb.classList.add("playing");
+
+        // IMPORTANTE: backticks + ${ytEmbed(id)} (si esto se rompe, aparece el "Cannot GET /${...}")
+        thumb.innerHTML = `
+          <div class="ytCover">
+            <iframe
+              src="${ytEmbed(id)}"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              allowfullscreen
+            ></iframe>
+          </div>
+        `;
+
+        currentPlaying = { thumb, original };
+      });
+    }
+
+    const quickTabsEl = document.getElementById("quickTabs");
+const topTabsEl = document.getElementById("topTabs");
+
+function renderQuickTabs(){
+  if (!quickTabsEl) return;
+
+  // mismas pestañas que ya tenés arriba
+  const btns = Array.from(document.querySelectorAll("#topTabs .topTab"));
+  quickTabsEl.innerHTML = btns.map(b => {
+    const tab = b.dataset.tab;
+    const label = b.textContent.trim();
+    const active = (tab === activeTabId) ? "active" : "";
+    return `<button class="quickTab ${active}" type="button" data-tab="${tab}">${label}</button>`;
+  }).join("");
+
+  // click handler (delegado)
+  quickTabsEl.onclick = (e) => {
+    const btn = e.target.closest(".quickTab");
+    if (!btn) return;
+    activeTabId = btn.dataset.tab;
+    document.body.classList.remove("hasIntro");
+    stopCurrentPlaying?.();
+    renderTopTabs?.();
+    render?.();
+    renderQuickTabs(); // actualizar active
+  };
+}
+
+// detectar cuándo #topTabs deja de verse
+function initQuickTabsObserver(){
+  if (!topTabsEl) return;
+
+  const obs = new IntersectionObserver(([entry]) => {
+    // en intro no mostramos la barra
+    if (document.body.classList.contains("hasIntro")) {
+      document.body.classList.remove("showQuickTabs");
+      return;
+    }
+
+    if (entry.isIntersecting) {
+      document.body.classList.remove("showQuickTabs");
+    } else {
+      document.body.classList.add("showQuickTabs");
+      renderQuickTabs();
+    }
+  }, { threshold: 0.1 });
+
+  obs.observe(topTabsEl);
+}
+
+initQuickTabsObserver();
+
+
+    /* ------------------------------- 10) INIT -------------------------------- */
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Cambiá estos 2 textos si querés:
+    const BRAND = "GRUV";
+    const brandTop = document.getElementById("brandName");
+    const brandFooter = document.getElementById("brandNameFooter");
+    if (brandTop) brandTop.textContent = BRAND;
+    if (brandFooter) brandFooter.textContent = BRAND;
+
+    renderTopTabs();
+    render();
+  </script>
+</body>
+</html>
