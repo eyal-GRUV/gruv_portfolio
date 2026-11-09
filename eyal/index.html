@@ -783,6 +783,121 @@ body::before{
   z-index: 2;
 }
 
+/* ---------- Self-hosted video (mp4) ---------- */
+.ytCover video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  background:#000;
+  display:block;
+}
+
+/* ---------- PERFORMANCE ADS (case studies) ---------- */
+.perfIntro{ grid-column: 1 / -1; }
+
+.caseRow{
+  grid-column: 1 / -1;
+  display:grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap:16px;
+  align-items:start;
+}
+.caseRow .tile.vert{ grid-column:auto; }
+
+.caseCard{
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+  border-radius: 18px;
+  padding: 20px 22px;
+}
+
+.caseMeta{
+  margin:0 0 6px;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.45px;
+  text-transform:uppercase;
+  color: rgba(255,255,255,.6);
+}
+
+.caseTitle{
+  margin:0 0 14px;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-.2px;
+  line-height:1.2;
+}
+
+.caseStats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin: 0 0 16px;
+}
+.stat{
+  flex:1 1 140px;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background: rgba(255,255,255,.02);
+}
+.statNum{
+  display:block;
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:-.5px;
+  line-height:1.1;
+  color:#fff;
+}
+.statLabel{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:6px;
+  font-size:12px;
+  line-height:1.4;
+  color: rgba(255,255,255,.65);
+}
+.statLabel::before{
+  content:"";
+  flex-shrink:0;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background: var(--accent);
+}
+
+.caseSteps{
+  margin:0;
+  display:grid;
+  grid-template-columns: 110px 1fr;
+  gap:10px 14px;
+}
+.caseSteps dt{
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.45px;
+  text-transform:uppercase;
+  color: rgba(255,255,255,.9);
+  padding-top:2px;
+}
+.caseSteps dd{
+  margin:0;
+  font-size:14px;
+  line-height:1.65;
+  color: rgba(255,255,255,.72);
+}
+
+@media (max-width: 760px){
+  .caseRow{ grid-template-columns: 1fr; }
+  .caseRow .tile.vert{ width:100%; max-width:360px; margin:0 auto; }
+  .caseSteps{ grid-template-columns: 1fr; gap:4px; }
+  .caseSteps dd{ margin-bottom:8px; }
+  .statNum{ font-size:24px; }
+}
+
   </style>
 </head>
 
@@ -815,6 +930,8 @@ body::before{
   <h1 class="topTitle">GRUV PORTFOLIO</h1>
 
   <div class="topSections" id="topTabs" aria-label="Secciones">
+    <button class="topTab" type="button" data-tab="performance">PERFORMANCE ADS</button>
+    <span class="topDot"></span>
     <button class="topTab" type="button" data-tab="social_edit">SHORT FORM</button>
     <span class="topDot"></span>
     <button class="topTab" type="button" data-tab="motion">MOTION GRAPHICS</button>
@@ -852,8 +969,9 @@ const shortFormIndex = [
 
     /* ------------------------------- 02) TABS -------------------------------- */
     const tabs = [
+      { id:"performance", label:"Performance ads", count:3 },
       { id:"social_edit", label:"Short form", count:40 },
-      { id:"motion", label:"Motion graphics", count:16 },
+      { id:"motion", label:"Motion graphics", count:18 },
       { id:"vfx", label:"VFX", count:5 },
       { id:"videoclips", label:"Videoclips", count:8 },
       { id:"about", label:"About Us", count:0 },
@@ -886,6 +1004,55 @@ const shortFormIndex = [
 
     /* --------------------------- 04) VIDEOS (LINKS) ---------------------------- */
 const videosByTab = {
+      performance: [
+        {
+          src: "media/raw-northriver-ai-ugc.mp4",
+          poster: "media/raw-northriver-ai-ugc.jpg",
+          meta: "North River Charter Academy · Meta · Aug 2026",
+          title: "AI UGC: “The part nobody tells you about moving to Parrish”",
+          stats: [
+            { num: "3.02%", label: "CTR, 2.6x the account average" },
+            { num: "36.6%", label: "Hook rate (3-second views)" },
+          ],
+          steps: [
+            ["Insight", "Families who just moved to Parrish, FL have a few weeks to find a school, and most nearby schools are full or wait-listed."],
+            ["Angle", "A parent who already went through it saves you the research."],
+            ["Hook", "On screen: “The part nobody tells you about moving to Parrish with kids.” Voice: “If you just moved to Parrish and you're stressing about where to send your kids…”"],
+            ["Build", "AI parent voiceover over the school's real classroom footage. Proof in order: tuition-free, hands-on STEAM, free bus, care from 7 to 6. CTA: seats are limited, book the tour."],
+            ["Role", "Concept, script, AI voice and edit. Media buying by the agency."],
+          ],
+        },
+        {
+          src: "media/raw-northriver-steam-day.mp4",
+          poster: "media/raw-northriver-steam-day.jpg",
+          meta: "North River Charter Academy · Meta · Oct 2026 · next round",
+          title: "“Steam Day”: the same angle, cut to 31 seconds",
+          stats: [
+            { num: "−47%", label: "Cost per lead vs. the previous ad" },
+          ],
+          steps: [
+            ["Kept", "The “just moved to Parrish” hook from the AI UGC ad, the best CTR of all my ads."],
+            ["Changed", "48 s down to 31 s. The offer is on screen from the first frame (tuition-free K–6, hands-on STEAM, care 6:30–6). New footage with kinetic titles, and an end card with “Now enrolling 2026–27”."],
+            ["Role", "Edit, kinetic titles and end card."],
+          ],
+        },
+        {
+          src: "media/raw-osa-spanish.mp4",
+          poster: "media/raw-osa-spanish.jpg",
+          meta: "Online School of Arizona · Meta · Spanish cut",
+          title: "“UGC AI Ad 6”: the Spanish version",
+          stats: [
+            { num: "−43%", label: "Cost per lead vs. the English cut of the same ad" },
+          ],
+          steps: [
+            ["Test", "One script in two languages, for Arizona parents looking for an online high school."],
+            ["Hook", "“Si estás buscando una secundaria en línea en Arizona…”"],
+            ["Build", "A presenter for the hook and the CTA, students studying at home for the body, and kinetic text for the proof: free for grades 9–12, a personal coach, an in-person learning centre in Phoenix (10 students per centre, 1 teacher per 5)."],
+            ["Role", "Edit, captions and graphics."],
+          ],
+        },
+      ],
+
       social_edit: [
 
         { divider: true, label: "STORYTELLING" },
@@ -947,6 +1114,9 @@ const videosByTab = {
       ],
 
       motion: [
+        { src: "media/t23-presidente-900.mp4", poster: "media/t23-presidente-900.jpg", layout: "horz", role: "Brandy Presidente · “Hecho con puro México” 2026 (TEAM23) · Paper-collage animation and motion design" },
+        { src: "media/t23-presidente-duo.mp4", poster: "media/t23-presidente-duo.jpg", layout: "horz", role: "Brandy Presidente · 900 ml + 200 ml version · Paper-collage animation and motion design" },
+
         { youtube: "https://www.youtube.com/watch?v=Vd6dbzqx5T8", role: "Typography animation and motion graphics" },
 
         { youtube: "https://youtube.com/shorts/z_VTnXEuQug" },
@@ -1046,6 +1216,29 @@ function slugKey(s){
       return index % 5 === 0 ? "horz" : "vert";
     }
 
+    // Thumbnail: own poster image for self-hosted mp4, YouTube frames otherwise
+    function thumbStyle(v){
+      if (v.poster) return `background-image:url('${v.poster}');`;
+      const thumbs = ytThumbCandidates(getYouTubeId(v.youtube));
+      return thumbs.length
+        ? `background-image:${thumbs.map(u => `url('${u}')`).join(",")};`
+        : "";
+    }
+
+    function tileHtml(v, i, layout, isMotion){
+      const hasRole = !!v.role;
+      return `
+        <div class="tile ${layout} ${isMotion ? "motion" : ""} ${hasRole ? "hasRole" : ""}" data-index="${i}">
+          <div class="thumb" style="${thumbStyle(v)}">
+            <div class="play" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            ${layout === "horz" && v.role ? `<div class="roleBar">${v.role}</div>` : ""}
+          </div>
+        </div>
+      `;
+    }
+
     function stopCurrentPlaying(){
       if(!currentPlaying) return;
       currentPlaying.thumb.innerHTML = currentPlaying.original;
@@ -1124,6 +1317,44 @@ function render(){
     return;
   }
 
+  if (activeTabId === "performance") {
+    const sfIndex = document.getElementById("sfIndex");
+    if (sfIndex) sfIndex.style.display = "none";
+
+    let html = `
+      <div class="aboutWrap perfIntro">
+        <h2 class="aboutTitle">Performance ads</h2>
+        <p class="aboutLead" style="margin:0;">
+          Meta ads made at RAW, a US performance agency, for US schools. Each one with the idea behind it,
+          how it was built and what it did in the ad account.
+        </p>
+      </div>
+    `;
+
+    list.forEach((v, i) => {
+      const stats = (v.stats || []).map(s => `
+        <div class="stat"><span class="statNum">${s.num}</span><span class="statLabel">${s.label}</span></div>
+      `).join("");
+      const steps = (v.steps || []).map(([k, t]) => `<dt>${k}</dt><dd>${t}</dd>`).join("");
+
+      html += `
+        <div class="caseRow">
+          ${tileHtml(v, i, "vert", false)}
+          <div class="caseCard">
+            <p class="caseMeta">${v.meta || ""}</p>
+            <h3 class="caseTitle">${v.title || ""}</h3>
+            <div class="caseStats">${stats}</div>
+            <dl class="caseSteps">${steps}</dl>
+          </div>
+        </div>
+      `;
+    });
+
+    grid.innerHTML = html;
+    setupShortFormObserver();
+    return;
+  }
+
   const sfIndexEl = document.getElementById("sfIndex");
   const sfListEl = sfIndexEl ? sfIndexEl.querySelector(".sfIndexList") : null;
 
@@ -1143,6 +1374,7 @@ function render(){
 
   let html = "";
   let mediaIndex = 0;
+  let motionIndex = 0; // only counts motion items without an explicit layout
 
   list.forEach((v, i) => {
     // Divisor manual (no cuenta para layout)
@@ -1158,35 +1390,20 @@ html += `
       return;
     }
 
-    const id = getYouTubeId(v.youtube);
-    const thumbs = ytThumbCandidates(id);
-    const bg = thumbs.length
-      ? `background-image:${thumbs.map(u => `url('${u}')`).join(",")};`
-      : "";
-
     let layout = "vert";
     const isMotion = activeTabId === "motion";
 
-    if (isMotion) {
-      layout = getMotionLayout(i);
+    if (v.layout) {
+      layout = v.layout;
+    } else if (isMotion) {
+      layout = getMotionLayout(motionIndex++);
     } else if (activeTabId === "social_edit") {
       layout = getShortFormLayout(mediaIndex);
     } else if (activeTabId === "videoclips" || activeTabId === "vfx") {
       layout = "horz";
     }
 
-    const hasRole = !!v.role;
-
-    html += `
-      <div class="tile ${layout} ${isMotion ? "motion" : ""} ${hasRole ? "hasRole" : ""}" data-index="${i}">
-        <div class="thumb" style="${bg}">
-          <div class="play" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          ${layout === "horz" && v.role ? `<div class="roleBar">${v.role}</div>` : ""}
-        </div>
-      </div>
-    `;
+    html += tileHtml(v, i, layout, isMotion);
 
     mediaIndex++;
   });
@@ -1308,7 +1525,7 @@ topTitle.addEventListener("click", () => {
         const index = Number(tile.dataset.index);
         const v = (videosByTab[activeTabId] || [])[index];
         const id = getYouTubeId(v?.youtube);
-        if (!id) return;
+        if (!id && !v?.src) return;
 
         const thumb = tile.querySelector(".thumb");
         if (!thumb) return;
@@ -1320,7 +1537,13 @@ topTitle.addEventListener("click", () => {
         thumb.classList.add("playing");
 
         // IMPORTANTE: backticks + ${ytEmbed(id)} (si esto se rompe, aparece el "Cannot GET /${...}")
-        thumb.innerHTML = `
+        thumb.innerHTML = v.src
+          ? `
+          <div class="ytCover">
+            <video src="${v.src}" poster="${v.poster || ""}" autoplay controls playsinline preload="auto"></video>
+          </div>
+        `
+          : `
           <div class="ytCover">
             <iframe
               src="${ytEmbed(id)}"
