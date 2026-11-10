@@ -348,7 +348,7 @@ function zoneCoverTex(zone, pxPerU, wU, hU) { // desktop: the section's title pa
     foot.forEach((l, li) => g.fillText(l, m, footTop + li * w * 0.062));
   });
 }
-function caseCardTex(c, pxPerU, wU, hU) {
+function caseCardTex(c, pxPerU, wU, hU, compact = false) { // compact: the phone table, beside its phone (no hook; it is in the breakdown)
   const w = Math.round(wU * pxPerU), h = Math.round(hU * pxPerU);
   return canvasTex(w, h, (g) => {
     paperBase(g, w, h, "#f7f3ec");
@@ -375,15 +375,19 @@ function caseCardTex(c, pxPerU, wU, hU) {
         for (const l of wrapLines(g, lab, w - 2 * m - 26)) { if (draw) { g.fillStyle = "rgba(22,19,15,.75)"; g.fillText(l, m + 22, y); } y += w * 0.054 * k; }
         y += w * 0.05 * k;
       }
-      lines("HOOK", 0.034, 800, 0.05, INK, 150);
-      lines(c.hook, 0.05, 500, 0.064, "rgba(22,19,15,.85)", 100, true, 4);
+      if (!compact) {
+        lines("HOOK", 0.034, 800, 0.05, INK, 150);
+        lines(c.hook, 0.05, 500, 0.064, "rgba(22,19,15,.85)", 100, true, 4);
+      }
       return y;
     };
     let k = 1;
     while (run(k, false) > footY - w * 0.03 && k > 0.55) k -= 0.03;
     run(k, true);
-    g.fillStyle = RED; g.font = font(800, w * 0.036, 112); g.textBaseline = "top";
-    g.fillText("CLICK FOR THE FULL BREAKDOWN →", m, footY);
+    g.fillStyle = RED; g.textBaseline = "top";
+    const cta = `${IS_TOUCH ? "TAP" : "CLICK"} FOR THE FULL BREAKDOWN →`;
+    fitFont(g, cta, w - 2 * m, 800, w * (compact ? 0.05 : 0.036), 112, 8);
+    g.fillText(cta, m, footY);
   });
 }
 function heroTex(pxPerU, wU, hU, compact) {
@@ -991,15 +995,15 @@ function buildMobile() {
         z0.groups.push({ label: grp.label, start: gi === 0 ? z0.start : z });
         addLabel(grp.label, -1.25, z + 0.22, 0.42, -0.012, String(gi + 1).padStart(2, "0"));
         z += 0.6;
-        if (grp.cases) { // each ad, then the sheet with its numbers
-          const S = 0.8;
+        if (grp.cases) { // each ad with the sheet of its numbers beside it
+          const S = 0.74, ph = PH.h * S, cw = 1.36;
           for (const c of grp.items) {
-            const pd = addDevice(c, 0, z + (PH.h * S) / 2, S);
-            z += PH.h * S + 0.25;
-            addPaper(caseCardTex(c, 420, 2.5, 3.35), 0, z + 1.675, 2.5, 3.35, 0.01, { pick: c, tape: true, linked: pd });
-            z += 3.35 + 0.5;
+            const pd = addDevice(c, -0.72, z + ph / 2, S, MJ(0.03));
+            addPaper(caseCardTex(c, 420, cw, ph, true), 1.42 - cw / 2, z + ph / 2 + MJ(0.04), cw, ph, MJ(0.02), { pick: c, tape: true, linked: pd });
+            z += ph + 0.4;
             c.__zone = zone; c.__group = grp; FLAT.push(c);
           }
+          z += 0.1;
           return;
         }
         let row = null;
@@ -1513,14 +1517,13 @@ let dimT = 0, dimD = 6, bdDev = null, bdShown = false;
 const lbPrevBtn = document.getElementById("lbPrev"), lbNextBtn = document.getElementById("lbNext");
 const BD_T = 0.75, _v = new THREE.Vector3(), _q = new THREE.Quaternion(), FACE = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI / 2);
 const easeIO = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
-function bdBox(o) { // where the screen sits on the page, in px: left of the breakdown (desktop, and a phone screen on a phone) or above it
+function bdBox() { // where the screen sits on the page, in px: left of the breakdown (desktop) or above it (phone)
   const W = innerWidth, H = innerHeight;
   if (W >= 760) { const P = Math.min(440, W * 0.36) + 56; return { x: 70, y: 72, w: W - P - 110, h: H - 72 - 34 }; }
-  if (o === "v") return { x: 8, y: 96, w: Math.round(W * 0.54) - 12, h: H - 96 - 76 }; // the notes go beside it, the arrows under it
   return { x: 14, y: 100, w: W - 28, h: H * 0.57 - 100 };
 }
 function bdTarget(d) { // a pose in front of the camera that fills the box
-  const u = d.userData, bx = bdBox(u.item.o), t2 = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
+  const u = d.userData, bx = bdBox(), t2 = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
   const D = Math.max(u.fh * innerHeight / (bx.h * 0.92 * t2), u.fw * innerWidth / (bx.w * 0.92 * t2 * camera.aspect));
   const xN = ((bx.x + bx.w / 2) / innerWidth) * 2 - 1, yN = 1 - ((bx.y + bx.h / 2) / innerHeight) * 2;
   const vh = D * t2, vw = vh * camera.aspect;
@@ -1557,7 +1560,7 @@ function stepFlight(d, dt) {
   if (d === bdDev && b.dir > 0) placeMedia(d, b.t >= 1);
 }
 function stepDim(dt) {
-  dimT += ((bdDev ? (innerWidth < 760 ? 0.8 : 0.68) : 0) - dimT) * (1 - Math.exp(-dt * 6));
+  dimT += ((bdDev ? 0.68 : 0) - dimT) * (1 - Math.exp(-dt * 6));
   dimPlane.visible = dimT > 0.005;
   if (!dimPlane.visible) return;
   dimMat.opacity = dimT;
@@ -1602,7 +1605,6 @@ function showItem(startAt = 0) { // the item at lbIndex comes up; the one before
   bdDev = d; bdShown = false;
   lbMedia.classList.remove("on");
   lb.classList.toggle("flat", !d);
-  lb.classList.toggle("side", !!d && innerWidth < 760 && it.o === "v");
   if (d) flyUp(d); else { lbMedia.removeAttribute("style"); sizeMedia(it.o); }
   renderBreakdown(startAt);
   if (!d) lbMedia.classList.add("on");
@@ -1634,7 +1636,7 @@ function renderBreakdown(startAt = 0) {
 }
 function stepBreakdown(d) { if (lbList.length < 2) return; lbIndex = (lbIndex + d + lbList.length) % lbList.length; showItem(); }
 function closeBreakdown() {
-  lb.classList.remove("open", "flat", "side"); document.body.classList.remove("bd"); lbMedia.classList.remove("on"); lbMedia.innerHTML = ""; lbInfo.classList.remove("in");
+  lb.classList.remove("open", "flat"); document.body.classList.remove("bd"); lbMedia.classList.remove("on"); lbMedia.innerHTML = ""; lbInfo.classList.remove("in");
   if (bdDev) flyBack(bdDev);
   bdDev = null;
 }

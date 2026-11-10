@@ -136,22 +136,3 @@ body.bd .subnav, body.bd .dock, body.bd .hint, body.bd .tip{ opacity:0; pointer-
   .lbNext{ right:16px; }
 }
 
-/* ---------- phone, a vertical video in the breakdown: the notes beside the screen, the arrows under it ---------- */
-.lb.side .lbInfo{ left:calc(54vw + 2px); right:8px; top:50%; bottom:auto; width:auto; max-height:calc(100vh - 180px); padding:14px 12px 12px;
-  border-radius:14px; transform:translate(24px,-50%); }
-.lb.side .lbInfo.in{ transform:translate(0,-50%); }
-.lb.side .lbZone{ font-size:10px; letter-spacing:.7px; }
-.lb.side .lbTitle{ font-size:16px; margin:4px 0; }
-.lb.side .lbClient{ font-size:11.5px; line-height:1.4; }
-.lb.side .lbStats{ gap:6px; margin:10px 0 2px; }
-.lb.side .lbStat{ flex-basis:100%; padding:7px 9px; border-radius:9px; }
-.lb.side .lbStat b{ font-size:22px; }
-.lb.side .lbStat span{ font-size:10.5px; }
-.lb.side .lbSec{ margin-top:11px; }
-.lb.side .lbSec h3{ font-size:9.5px; margin-bottom:3px; gap:6px; }
-.lb.side .lbSec h3::before{ width:5px; height:5px; }
-.lb.side .lbSec p{ font-size:12.5px; line-height:1.45; }
-.lb.side .lbCount{ margin-top:12px; font-size:10.5px; }
-.lb.side ~ .lbPrev, .lb.side ~ .lbNext{ top:auto; bottom:18px; transform:none; }
-.lb.side ~ .lbPrev{ left:calc(27vw - 52px); }
-.lb.side ~ .lbNext{ left:calc(27vw + 6px); right:auto; }
