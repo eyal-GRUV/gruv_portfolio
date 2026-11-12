@@ -144,7 +144,8 @@ const ZONES = [
   { id: "about", n: "05", label: "About", idx: "Who I am and where I've worked", kind: "about", groups: [] },
 ];
 
-const REEL = { ...H("IQl4kNMYGxY", "Showreel"), reel: true, did: "A cut of my work across editing, motion graphics and VFX." };
+const REEL = { ...SELF("reel", "h", "media/reel-eyal.mp4", "media/reel-eyal.jpg", "Showreel"), prev: "media/reel-eyal-prev.mp4", reel: true,
+  did: "One minute of my work, in the order of this table: short form and performance ads, motion graphics, VFX and videoclips." };
 
 // Fallbacks when a video has no entry in breakdowns.js yet
 const ROLE = {
