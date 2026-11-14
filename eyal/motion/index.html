@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="Eyal Fabregat: motion designer. Brand animation, animated ads, versioning, kinetic type, illustration and UI." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='24' fill='%23e10600'/></svg>">
+<title>Motion Design · Eyal Fabregat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,50..150,100..900&display=swap" rel="stylesheet">
+<!-- Scale VF (Adobe Fonts, ps.type): add the web project here and it takes over from Anybody everywhere, canvas included:
+<link rel="stylesheet" href="https://use.typekit.net/KIT_ID.css"> -->
+<link rel="stylesheet" href="../../table/table.css?v=20261110b">
+</head>
+<body>
+<h1 class="sr">Eyal Fabregat: motion design. Brand systems, animated ads, versioning, kinetic type, illustration and UI</h1>
+
+<canvas id="scene" tabindex="0" aria-label="Worktable with all the videos. Click a screen to play or pause it, hold it for the breakdown."></canvas>
+<div class="vignette"></div>
+
+<header class="bar">
+  <button class="brand" id="home" type="button" aria-label="Back to the start of the table">
+    GRUV<span class="dot"></span><small>Eyal Fabregat · motion designer</small>
+  </button>
+  <nav class="cats" id="cats" aria-label="Categories"></nav>
+</header>
+<nav class="subnav" id="subnav" aria-label="Sections"></nav>
+
+<div class="hint" id="hint"><b>Click</b> a screen to play or pause · <b>Hold</b> it for the breakdown · <b>Drag</b> or <b>scroll</b> to move</div>
+
+<div class="dock">
+  <button id="snd" type="button" aria-label="Sound"><svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="w" d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></svg><span class="label" id="sndLabel">Sound on</span></button>
+  <button id="prev" type="button" aria-label="Previous section"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button id="next" type="button" aria-label="Next section"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  <a href="grid.html" title="Simple grid of every video"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span class="label">Grid view</span></a>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Breakdown">
+  <div class="lbMedia" id="lbMedia"></div>
+  <div class="lbInfo" id="lbInfo"></div>
+</div>
+<button class="lbBtn lbClose" id="lbClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<button class="lbBtn lbPrev" id="lbPrev" type="button" aria-label="Previous video"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button class="lbBtn lbNext" id="lbNext" type="button" aria-label="Next video"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+
+<div class="loader" id="loader"><div class="word">GRUV<i></i></div><div class="track"><div class="fill" id="fill"></div></div></div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import BD from "./breakdowns.js";
+import { ZONES, REEL, ROLE, ME, CONTACT, HERO } from "./site.js?v=20261113";
+window.SITE = { ZONES, REEL, ROLE, ME, CONTACT, BD, HERO };
+await import("../../table/engine.js?v=20261110b");
+</script>
+</body>
+</html>

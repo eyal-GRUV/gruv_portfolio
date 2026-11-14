@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Motion Design · Eyal Fabregat</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='24' fill='%23e10600'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0b0c10; --ink: #e8e8ea; --muted: #a7a8b1; --red: #e10600; --line: rgba(255,255,255,.08); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Anybody, system-ui, sans-serif; }
+  header { padding: 28px 16px 8px; max-width: 1200px; margin: 0 auto; display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+  header b { font-weight: 900; font-stretch: 125%; font-size: 28px; }
+  header b i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-left: 4px; }
+  header span { color: var(--muted); }
+  header a { margin-left: auto; color: var(--muted); }
+  section { max-width: 1200px; margin: 0 auto; padding: 24px 16px; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 4px; font-weight: 900; font-stretch: 125%; text-transform: uppercase; }
+  h2 small { color: var(--red); font-weight: 300; margin-right: 10px; }
+  p.blurb { margin: 0 0 18px; color: var(--muted); max-width: 680px; }
+  h3 { margin: 18px 0 10px; font-size: 15px; font-weight: 750; }
+  .row { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .row .h { grid-column: span 2; }
+  figure { margin: 0; }
+  .media { position: relative; background: #000; border-radius: 10px; overflow: hidden; }
+  .v .media { aspect-ratio: 9 / 16; } .h .media { aspect-ratio: 16 / 9; }
+  .media video, .media img, .media iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+  .media button { position: absolute; inset: 0; background: none; border: 0; cursor: pointer; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .about { color: var(--muted); max-width: 680px; line-height: 1.5; }
+  .about a { color: var(--ink); }
+  @media (max-width: 480px) { .row { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<header><b>GRUV<i></i></b><span>Eyal Fabregat · motion designer</span><a href="./">3D table</a></header>
+<main id="main"></main>
+<script type="module">
+import { ZONES, REEL, ME } from "./site.js?v=20261113";
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const card = (it) => {
+  const m = it.yt
+    ? `<img src="${it.thumb}" alt="" loading="lazy"><button type="button" data-yt="${it.yt}" aria-label="Play ${esc(it.title)}"></button>`
+    : `<video src="${it.src}" poster="${it.poster}" controls playsinline preload="none"></video>`;
+  return `<figure class="${it.o}"><div class="media">${m}</div><figcaption>${esc(it.title)}</figcaption></figure>`;
+};
+let html = `<section><h2><small>00</small>Showreel</h2><div class="row">${card(REEL)}</div></section>`;
+for (const z of ZONES) {
+  if (z.kind === "about") {
+    html += `<section><h2><small>${z.n}</small>${z.label}</h2><div class="about"><p>${esc(ME.lead)}</p><p>${ME.worked.map(esc).join("<br>")}</p><p><a href="mailto:${ME.email}">${ME.email}</a></p></div></section>`;
+    continue;
+  }
+  html += `<section><h2><small>${z.n}</small>${z.label}</h2><p class="blurb">${esc(z.blurb)}</p>`;
+  for (const g of z.groups) html += `<h3>${esc(g.label)}</h3><div class="row">${g.items.map(card).join("")}</div>`;
+  html += `</section>`;
+}
+const main = document.getElementById("main");
+main.innerHTML = html;
+main.addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-yt]"); if (!b) return;
+  b.parentElement.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.yt}?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+});
+</script>
+</body>
+</html>
