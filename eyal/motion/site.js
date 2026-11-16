@@ -96,7 +96,7 @@ export const ZONES = [
 ];
 
 export const REEL = { ...M("reel-motion", "h", "Motion reel"), prev: "media/reel-motion-prev.mp4", reel: true,
-  did: "Under a minute of motion design, in the order of this table: brand systems, animated ads, versioning, kinetic type, illustration and UI." };
+  did: "47 seconds cut to the beat: one campaign carried into every version, then identity, kinetic type, illustration and UI." };
 
 export const ROLE = {
   brand: "Logo and brand animation.",

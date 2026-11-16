@@ -74,5 +74,5 @@ export default {
     did: "Data animation: two scans side by side, body fat and lean mass counting to the real values, then the offer." },
   "kalos-metrics": { client: "KALOS (DEXA scans) · Meta · 2026", goal: "Show what a DEXA scan tracks over time.",
     did: "Animated charts: body fat, visceral fat and ALMI over time, then the offer." },
-  "reel-motion": { client: "Eyal Fabregat · 2026", goal: "Under a minute of motion design.", did: "Brand systems, animated ads, versioning, kinetic type, illustration and UI, in the order of this table." },
+  "reel-motion": { client: "Eyal Fabregat · 2026", goal: "Under a minute of motion design.", did: "One campaign carried into every version, then identity, kinetic type, illustration and UI, cut to the beat of the track." },
 };
